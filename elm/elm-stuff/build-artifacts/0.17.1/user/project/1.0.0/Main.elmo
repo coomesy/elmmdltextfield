@@ -139,7 +139,9 @@ var _user$project$Main$view1 = F2(
 					_user$project$Main$model.mdl,
 					_elm_lang$core$Native_List.fromArray(
 						[
-							_debois$elm_mdl$Material_Textfield$label('?????')
+							_debois$elm_mdl$Material_Textfield$label('Floating label'),
+							_debois$elm_mdl$Material_Textfield$floatingLabel,
+							_debois$elm_mdl$Material_Textfield$text$
 						]))
 				]));
 	});
@@ -148,52 +150,51 @@ var _user$project$Main$view = function (model) {
 		_elm_lang$core$List$indexedMap,
 		_user$project$Main$view1,
 		_elm_lang$core$Array$toList(model.counters));
-	return _debois$elm_mdl$Material_Scheme$top(
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
 		A2(
-			_elm_lang$html$Html$div,
+			_elm_lang$core$List$concatMap,
+			_elm_lang$core$Basics$identity,
 			_elm_lang$core$Native_List.fromArray(
-				[]),
-			A2(
-				_elm_lang$core$List$concatMap,
-				_elm_lang$core$Basics$identity,
-				_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$core$Native_List.fromArray(
 					[
+						A5(
+						_debois$elm_mdl$Material_Button$render,
+						_user$project$Main$Mdl,
 						_elm_lang$core$Native_List.fromArray(
-						[
-							A5(
-							_debois$elm_mdl$Material_Button$render,
-							_user$project$Main$Mdl,
-							_elm_lang$core$Native_List.fromArray(
-								[2]),
-							model.mdl,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_debois$elm_mdl$Material_Button$onClick(_user$project$Main$Add)
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Add counter')
-								]))
-						]),
+							[2]),
+						model.mdl,
 						_elm_lang$core$Native_List.fromArray(
-						[
-							A5(
-							_debois$elm_mdl$Material_Button$render,
-							_user$project$Main$Mdl,
-							_elm_lang$core$Native_List.fromArray(
-								[4]),
-							model.mdl,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_debois$elm_mdl$Material_Button$onClick(_user$project$Main$Remove)
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Remove counter')
-								]))
-						]),
-						counters
-					]))));
+							[
+								_debois$elm_mdl$Material_Button$onClick(_user$project$Main$Add)
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Add counter')
+							]))
+					]),
+					_elm_lang$core$Native_List.fromArray(
+					[
+						A5(
+						_debois$elm_mdl$Material_Button$render,
+						_user$project$Main$Mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[4]),
+						model.mdl,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_debois$elm_mdl$Material_Button$onClick(_user$project$Main$Remove)
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Remove counter')
+							]))
+					]),
+					counters
+				])));
 };
 var _user$project$Main$main = {
 	main: _elm_lang$html$Html_App$program(

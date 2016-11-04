@@ -101,7 +101,10 @@ view1 idx val =
         , Textfield.render Mdl
             [ 2, idx ]
             model.mdl
-            [ Textfield.label "?????" ]
+            [ Textfield.label "Floating label"
+            , Textfield.floatingLabel
+            , Textfield.text'
+            ]
         ]
 
 
@@ -129,7 +132,6 @@ view model =
             , counters
             ]
             |> div []
-            |> Material.Scheme.top
 
 
 main : Program Never
