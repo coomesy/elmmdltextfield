@@ -1,0 +1,254 @@
+var _debois$elm_mdl$Material_Chip$hasValue = function (m) {
+	var _p0 = m;
+	if (_p0.ctor === 'Just') {
+		return true;
+	} else {
+		return false;
+	}
+};
+var _debois$elm_mdl$Material_Chip$renderItem = function (item) {
+	var _p1 = item;
+	switch (_p1.ctor) {
+		case 'Contact':
+			return A3(
+				_debois$elm_mdl$Material_Options$styled,
+				_p1._0,
+				A2(
+					_elm_lang$core$List_ops['::'],
+					_debois$elm_mdl$Material_Options$cs('mdl-chip__contact'),
+					_p1._1),
+				_p1._2);
+		case 'Text':
+			return A3(
+				_debois$elm_mdl$Material_Options$styled,
+				_elm_lang$html$Html$span,
+				A2(
+					_elm_lang$core$List_ops['::'],
+					_debois$elm_mdl$Material_Options$cs('mdl-chip__text'),
+					_p1._0),
+				_p1._1);
+		default:
+			return A3(
+				_debois$elm_mdl$Material_Options$styled,
+				_p1._0,
+				A2(
+					_elm_lang$core$List_ops['::'],
+					_debois$elm_mdl$Material_Options$cs('mdl-chip__action'),
+					_p1._1),
+				_p1._2);
+	}
+};
+var _debois$elm_mdl$Material_Chip$priority = function (item) {
+	var _p2 = item;
+	switch (_p2.ctor) {
+		case 'Contact':
+			return 0;
+		case 'Text':
+			return 1;
+		default:
+			return 2;
+	}
+};
+var _debois$elm_mdl$Material_Chip$on = F2(
+	function (event, decoder) {
+		return _debois$elm_mdl$Material_Options$set(
+			function (config) {
+				return _elm_lang$core$Native_Utils.update(
+					config,
+					{
+						listeners: A2(
+							_elm_lang$core$Basics_ops['++'],
+							config.listeners,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									A2(_elm_lang$html$Html_Events$on, event, decoder)
+								]))
+					});
+			});
+	});
+var _debois$elm_mdl$Material_Chip$onClick = function (msg) {
+	return A2(
+		_debois$elm_mdl$Material_Chip$on,
+		'click',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _debois$elm_mdl$Material_Chip$deleteClick = function (msg) {
+	return _debois$elm_mdl$Material_Options$set(
+		function (config) {
+			return _elm_lang$core$Native_Utils.update(
+				config,
+				{
+					deleteClick: _elm_lang$core$Maybe$Just(
+						A3(
+							_elm_lang$html$Html_Events$onWithOptions,
+							'click',
+							{stopPropagation: true, preventDefault: true},
+							_elm_lang$core$Json_Decode$succeed(msg)))
+				});
+		});
+};
+var _debois$elm_mdl$Material_Chip$deleteLink = function (link) {
+	return _debois$elm_mdl$Material_Options$set(
+		function (config) {
+			return _elm_lang$core$Native_Utils.update(
+				config,
+				{
+					deleteLink: _elm_lang$core$Maybe$Just(
+						_elm_lang$html$Html_Attributes$href(link))
+				});
+		});
+};
+var _debois$elm_mdl$Material_Chip$deleteIcon = function (icon) {
+	return _debois$elm_mdl$Material_Options$set(
+		function (config) {
+			return _elm_lang$core$Native_Utils.update(
+				config,
+				{
+					deleteIcon: _elm_lang$core$Maybe$Just(icon)
+				});
+		});
+};
+var _debois$elm_mdl$Material_Chip$defaultConfig = {
+	deleteIcon: _elm_lang$core$Maybe$Nothing,
+	deleteLink: _elm_lang$core$Maybe$Nothing,
+	deleteClick: _elm_lang$core$Maybe$Nothing,
+	listeners: _elm_lang$core$Native_List.fromArray(
+		[])
+};
+var _debois$elm_mdl$Material_Chip$Config = F4(
+	function (a, b, c, d) {
+		return {deleteIcon: a, deleteLink: b, deleteClick: c, listeners: d};
+	});
+var _debois$elm_mdl$Material_Chip$Action = F3(
+	function (a, b, c) {
+		return {ctor: 'Action', _0: a, _1: b, _2: c};
+	});
+var _debois$elm_mdl$Material_Chip$action = _debois$elm_mdl$Material_Chip$Action;
+var _debois$elm_mdl$Material_Chip$getActionElement = function (config) {
+	var click = function () {
+		var _p3 = config.deleteClick;
+		if (_p3.ctor === 'Just') {
+			return _debois$elm_mdl$Material_Options_Internal$attribute(_p3._0);
+		} else {
+			return _debois$elm_mdl$Material_Options$nop;
+		}
+	}();
+	var link = function () {
+		var _p4 = config.deleteLink;
+		if (_p4.ctor === 'Just') {
+			return _debois$elm_mdl$Material_Options_Internal$attribute(_p4._0);
+		} else {
+			return _debois$elm_mdl$Material_Options$nop;
+		}
+	}();
+	var hasClick = _debois$elm_mdl$Material_Chip$hasValue(config.deleteClick);
+	var hasLink = _debois$elm_mdl$Material_Chip$hasValue(config.deleteLink);
+	var actionElement = hasLink ? _elm_lang$html$Html$a : _elm_lang$html$Html$span;
+	var hasIcon = _debois$elm_mdl$Material_Chip$hasValue(config.deleteIcon);
+	var icon = hasIcon ? A2(_elm_lang$core$Maybe$withDefault, '', config.deleteIcon) : ((hasLink || hasClick) ? A2(_elm_lang$core$Maybe$withDefault, 'cancel', config.deleteIcon) : '');
+	var isDeletable = hasIcon || (hasLink || hasClick);
+	return isDeletable ? _elm_lang$core$Maybe$Just(
+		A3(
+			_debois$elm_mdl$Material_Chip$action,
+			actionElement,
+			_elm_lang$core$Native_List.fromArray(
+				[link, click]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_debois$elm_mdl$Material_Icon$view,
+					icon,
+					_elm_lang$core$Native_List.fromArray(
+						[]))
+				]))) : _elm_lang$core$Maybe$Nothing;
+};
+var _debois$elm_mdl$Material_Chip$chip = F3(
+	function (element, props, items) {
+		var isContact = A2(
+			_elm_lang$core$List$any,
+			function (x) {
+				return _elm_lang$core$Native_Utils.eq(
+					_debois$elm_mdl$Material_Chip$priority(x),
+					0);
+			},
+			items);
+		var summary = A2(_debois$elm_mdl$Material_Options$collect, _debois$elm_mdl$Material_Chip$defaultConfig, props);
+		var config = summary.config;
+		var listeners = config.listeners;
+		var action = _debois$elm_mdl$Material_Chip$getActionElement(config);
+		var isDeletable = _debois$elm_mdl$Material_Chip$hasValue(action);
+		var withIcon = A2(
+			_elm_lang$core$Basics_ops['++'],
+			function () {
+				var _p5 = action;
+				if (_p5.ctor === 'Just') {
+					return _elm_lang$core$Native_List.fromArray(
+						[_p5._0]);
+				} else {
+					return _elm_lang$core$Native_List.fromArray(
+						[]);
+				}
+			}(),
+			items);
+		var content = A2(
+			_elm_lang$core$List$map,
+			_debois$elm_mdl$Material_Chip$renderItem,
+			A2(_elm_lang$core$List$sortBy, _debois$elm_mdl$Material_Chip$priority, withIcon));
+		return A4(
+			_debois$elm_mdl$Material_Options$styled$,
+			element,
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_debois$elm_mdl$Material_Options$cs('mdl-chip'),
+						A2(
+						_debois$elm_mdl$Material_Options$when,
+						_debois$elm_mdl$Material_Options$cs('mdl-chip--contact'),
+						isContact),
+						A2(
+						_debois$elm_mdl$Material_Options$when,
+						_debois$elm_mdl$Material_Options$cs('mdl-chip--deletable'),
+						isDeletable),
+						_debois$elm_mdl$Material_Options_Internal$attribute(
+						_debois$elm_mdl$Material_Helpers$blurOn('mouseup')),
+						_debois$elm_mdl$Material_Options_Internal$attribute(
+						_debois$elm_mdl$Material_Helpers$blurOn('mouseleave')),
+						_debois$elm_mdl$Material_Options_Internal$attribute(
+						_debois$elm_mdl$Material_Helpers$blurOn('touchend'))
+					]),
+				props),
+			listeners,
+			content);
+	});
+var _debois$elm_mdl$Material_Chip$button = function (props) {
+	return A2(
+		_debois$elm_mdl$Material_Chip$chip,
+		_elm_lang$html$Html$button,
+		A2(
+			_elm_lang$core$List_ops['::'],
+			_debois$elm_mdl$Material_Options_Internal$attribute(
+				_elm_lang$html$Html_Attributes$type$('button')),
+			props));
+};
+var _debois$elm_mdl$Material_Chip$span = _debois$elm_mdl$Material_Chip$chip(_elm_lang$html$Html$span);
+var _debois$elm_mdl$Material_Chip$Text = F2(
+	function (a, b) {
+		return {ctor: 'Text', _0: a, _1: b};
+	});
+var _debois$elm_mdl$Material_Chip$content = _debois$elm_mdl$Material_Chip$Text;
+var _debois$elm_mdl$Material_Chip$text = F2(
+	function (props, txt) {
+		return A2(
+			_debois$elm_mdl$Material_Chip$Text,
+			props,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text(txt)
+				]));
+	});
+var _debois$elm_mdl$Material_Chip$Contact = F3(
+	function (a, b, c) {
+		return {ctor: 'Contact', _0: a, _1: b, _2: c};
+	});
+var _debois$elm_mdl$Material_Chip$contact = _debois$elm_mdl$Material_Chip$Contact;
