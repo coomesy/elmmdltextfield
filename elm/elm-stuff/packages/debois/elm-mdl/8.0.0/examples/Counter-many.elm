@@ -1,6 +1,7 @@
 {- This file re-implements the Elm Counter example (many counters) with
    elm-mdl. Look at this file if you have a dynamic number of elm-mdl components
    and are unsure how to choose proper indices.
+
    If you are looking for a starting point, you want `Counter.elm` rather than
    this file.
 -}
@@ -14,7 +15,6 @@ import Array exposing (Array)
 import Material
 import Material.Scheme
 import Material.Button as Button
-import Material.Textfield as Textfield
 import Material.Options as Options exposing (css)
 import Material.Helpers exposing (pure)
 
@@ -83,10 +83,17 @@ type alias Mdl =
 
 view1 : Int -> Int -> Html Msg
 view1 idx val =
-    div [ style [ ( "padding", "2rem" ) ] ]
+    div
+        [ style [ ( "padding", "2rem" ) ] ]
         [ text ("Current count: " ++ toString val)
         , Button.render Mdl
             [ 0, idx ]
+            {- Crucial bit: We don't know how many elements are going to be in
+               model.counters, but we still have to come up with _unique_ indices
+               for the two buttons for the idx'th element. We exploit that indices
+               are lists, and adopt the convention that "increase buttons" have
+               index [0,idx]; "reset buttons" index [1,idx] and so forth.
+            -}
             model.mdl
             [ Options.onClick (Increase idx)
             , css "margin" "0 24px"
@@ -97,14 +104,6 @@ view1 idx val =
             model.mdl
             [ Options.onClick (Reset idx) ]
             [ text "Reset" ]
-        , Textfield.render Mdl
-            [ 2, idx ]
-            model.mdl
-            [ Textfield.label "Floating label"
-            , Textfield.floatingLabel
-            , Textfield.text_
-            ]
-            []
         ]
 
 
@@ -132,6 +131,7 @@ view model =
             , counters
             ]
             |> div []
+            |> Material.Scheme.top
 
 
 main : Program Never Model Msg
